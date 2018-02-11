@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>周报相关指标监控</title>
+	<style> 
+		body{ background-color:#333; text-align:left; font-family:'Microsoft YaHei'; color:#ddd } 
+		.header_div{width:100%;height:50px;font-weight:bold;font-size:22px;}
+		.chart_div{ margin:5px; width:32%; height:100%; float:left; text-align: left } 
+		.chart_div_small{ margin:5px; width:24%; height:100%; float:left; text-align: left } 
+		.main{ margin:0 auto; width:100%; height:700px }
+		.top_wrap{ width:100%;height:20%; }
+		.wrap{ width:100%;height:30%; }
+	</style> 
+    <!-- 引入 ECharts 文件 -->
+    <script src="{{url_for('static', filename='js/common.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/jquery-3.1.1.js')}}"></script>
+    <!--script src="line.weekrptmetrics.js"></script>
+    <script src="catagorylist.js"></script>
+    <script src="piechart.js"></script-->
+</head>
+<body>
+	<div id="header" class="header_div">
+		周报相关指标监控
+	</div>
+	<div id="summarydiv" class="main">
+		<div id="wap" class="top_wrap">
+			<div id="other" class='chart_div'></div>
+			<div id="error_projs" class='chart_div'></div>
+			<div id="disk_usage" class='chart_div'></div>
+		</div>
+		<div id="wap" class="wrap">
+			<div id="wap_pv" class='chart_div'></div>
+			<div id="wap_blacklist_pv" class='chart_div'></div>
+			<div id="wap_other_pv" class='chart_div'></div>
+		</div>
+		<div id="video" class="wrap">
+			<div id="newsclient_vv" class='chart_div'></div>
+			<div id="newsclient_live" class='chart_div'></div>
+			<div id="all_vv" class='chart_div'></div>
+		</div>
+	</div>
+	<div id="footer" style="width: 100%;height:10px;"></div>
+	<script type="text/javascript">
+//		drawCatagoryList('error_projs', '调度系统报错项目');
+//		drawPieChart('disk_usage', 'HDFS磁盘占用');
+//		drawChart('newsclient_dau', '新闻客户端DAU');
+//		drawChart('newsclient_dau_wm', '新闻客户端分来源DAU');
+//		drawChart('newsclient_dau_os', '新闻客户端分来源DAU');
+//		drawChart('wap_pv', '手浪整体流量');
+//		drawChart('wap_blacklist_pv', '手浪过滤流量');
+//		drawChart('wap_other_pv', '手浪规则匹配失败流量');
+//		drawChart('newsclient_vv', '新闻客户端点播视频');
+//		drawChart('newsclient_live', '新闻客户端直播视频');
+//		drawChart('all_vv', '全站VV');
+//		drawChart('wap_home', '手浪浪首', 'wap_pvuv', '浪首');
+//		drawChart('wap_newsmil', '手浪新闻+军事', 'wap_pvuv', '新闻+军事');
+//		drawChart('wap_blog', '手浪博客', 'wap_pvuv', '博客');
+//		drawChart('wap_finance', '手浪财经', 'wap_pvuv', '财经');
+//		drawChart('wap_tech', '手浪科技', 'wap_pvuv', '科技');
+//		drawChart('wap_auto', '手浪汽车', 'wap_pvuv', '汽车');
+//		drawChart('wap_ent', '手浪娱乐', 'wap_pvuv', '娱乐');
+//		drawChart('wap_sports', '手浪体育', 'wap_pvuv', '体育');
+//		drawChart('wap_eladies', '手浪女性', 'wap_pvuv', '女性');
+//		drawChart('wap_health', '手浪健康', 'wap_pvuv', '健康');
+//		drawChart('wap_fasion', '手浪时尚', 'wap_pvuv', '时尚');
+//		drawChart('wap_baby', '手浪育儿', 'wap_pvuv', '育儿');
+//		drawChart('wap_edu', '手浪教育', 'wap_pvuv', '教育');
+//		drawChart('wap_fo', '手浪佛学', 'wap_pvuv', '佛学');
+//		drawChart('wap_collections', '手浪收藏', 'wap_pvuv', '收藏');
+//		drawChart('wap_astro', '手浪星座', 'wap_pvuv', '星座');
+	</script>
+</body>
+</html>
