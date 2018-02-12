@@ -65,6 +65,22 @@ def save_hld(hlds):
     except Exception, e:
         traceback.print_exc()
 
+def delete_ast(date_str):
+    try:
+        sql = sqls.get_sql('delete_ast_by_day', date_str)
+        update(sql)
+    except Exception, e:
+        traceback.print_exc()
+
+def save_ast(asts):
+    try:
+        sql_template = sqls.sql_dict['save_ast']
+        for ast in asts:
+            sql = sql_template % ast.to_tuple()
+            update(sql)
+    except Exception, e:
+        traceback.print_exc()
+
 def query(sql):
     db = connect()
     cursor = db.cursor() 
