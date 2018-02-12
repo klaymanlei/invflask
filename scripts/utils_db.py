@@ -18,9 +18,10 @@ def fetch_trd(date_str):
             trd.date = row[0]
             trd.code = row[1]
             trd.name = row[2]
-            trd.share = row[3]
-            trd.prc = row[4]
-            trd.cst = row[5]
+            trd.portfolio = row[3]
+            trd.share = float(row[4])
+            trd.prc = float(row[5])
+            trd.cst = float(row[6])
             trds.append(trd)
         # print hlds
         return trds
@@ -38,10 +39,11 @@ def fetch_hld(date_str):
         for row in rows:
             hld = hld_pu()
             hld.date = row[0]
-            hld.code = row[1]
-            hld.name = row[2]
-            hld.share = row[3]
-            hld.cost = row[4]
+            hld.portfolio = row[1]
+            hld.code = row[2]
+            hld.name = row[3]
+            hld.share = float(row[4])
+            hld.cost = float(row[5])
             hlds.append(hld)
         # print hlds
         return hlds

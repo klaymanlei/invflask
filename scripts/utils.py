@@ -8,12 +8,12 @@ def lastday(date_str):
     lastday = date + datetime.timedelta(days = -1)
     return lastday.strftime('%Y-%m-%d') 
 
-def read_file(file_path):
+def read_file(file_path, split_char):
     file_in = open(file_path, 'r')
     data = []
     for line in file_in:
         if len(line.strip()) > 0:
-            data.append(line.strip().split('\t'))
+            data.append(line.strip().split(split_char))
     file_in.close()
     return data
 

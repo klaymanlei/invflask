@@ -27,12 +27,13 @@ trds = utils_db.fetch_trd(date_str)
 for trd in trds:
     hld_c = hlds['0']
     hld = None
-    if hlds.has_key(trd.code):
-        hld = hlds[trd.code]
+    if hlds.has_key((trd.code, trd.portfolio)):
+        hld = hlds[(trd.code, trd.portfolio)]
     else:
         hld = hld_pu()
-        hlds[trd.code] = hld
+        hlds[(trd.code, trd.portfolio)] = hld
         hld.date = trd.date
+        hld.portfolio = trd.portfolio
         hld.code = trd.code
         hld.name = trd.name
     hld.share = hld.share + trd.share
