@@ -26,3 +26,12 @@ CREATE TABLE `t_ast` (
   `prc` DECIMAL(20,4) DEFAULT '0.0000' COMMENT '单价',
   PRIMARY KEY (`dt`,`code`)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8
+
+CREATE VIEW `ast_overview` AS (
+SELECT
+  `t_ast`.`dt`   AS `dt`,
+  `t_ast`.`type` AS `type`,
+  SUM((`t_ast`.`share` * `t_ast`.`prc`)) AS `value`
+FROM `t_ast`
+GROUP BY `t_ast`.`dt`,`t_ast`.`type`)
+
