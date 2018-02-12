@@ -16,3 +16,13 @@ CREATE TABLE `t_trd` (
   `cst` decimal(20,4) NOT NULL DEFAULT '0.0000' COMMENT '其他费用',
   PRIMARY KEY (`dt`,`code`,`share`,`prc`,`cst`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+
+CREATE TABLE `t_ast` (
+  `dt` DATE NOT NULL DEFAULT '1970-01-01' COMMENT '日期',
+  `code` VARCHAR(50) NOT NULL DEFAULT '' COMMENT '维度类型2',
+  `name` VARCHAR(50) DEFAULT '-',
+  `type` VARCHAR(50) DEFAULT '-' COMMENT '其他',
+  `share` DECIMAL(20,4) DEFAULT '0.0000' COMMENT '份额',
+  `prc` DECIMAL(20,4) DEFAULT '0.0000' COMMENT '单价',
+  PRIMARY KEY (`dt`,`code`)
+) ENGINE=INNODB DEFAULT CHARSET=utf8
