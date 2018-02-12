@@ -12,7 +12,7 @@ delete from t_hld where dt='${date}'
 """
 sql_dict['save_hld'] = """
 INSERT INTO invdb.t_hld (dt, CODE, NAME, SHARE, cost)
-VALUES ('%s', '%s', '%s', '%d', '%d')
+VALUES ('%s', '%s', '%s', '%f', '%f')
 """
 
 def get_sql(name, date):
