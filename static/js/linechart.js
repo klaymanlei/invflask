@@ -1,9 +1,7 @@
-function drawChart(chartname, charttitle, php_name='', type='') {
+function drawChart(chartname, charttitle, flask_path='', type='') {
 	var myChart = echarts.init(document.getElementById(chartname));
-	if (php_name == '')
-		php_name = chartname;
-	var php_url = "php/" + php_name + ".php";
-
+	if (flask_path == '')
+		flask_path = chartname;
 	function formatedDate() {
 		var now = new Date();
 		var dt_str = now.getFullYear();
@@ -143,7 +141,7 @@ function drawChart(chartname, charttitle, php_name='', type='') {
 	$.ajax({
 		type: "GET",
 		async: true,
-		url: php_url,
+		url: flask_path,
 		data: {date:dt_str, type:type},
 		dataType: "json",
 		success: function(rs){

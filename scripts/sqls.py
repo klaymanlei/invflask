@@ -21,9 +21,14 @@ sql_dict['save_ast'] = """
 INSERT INTO invdb.t_ast (dt, portfolio, CODE, NAME, TYPE, SHARE, prc)
 VALUES ('%s', '%s', '%s', '%s', '%s', '%f', '%f')
 """
+sql_dict['total_ast_before'] = """
+select dt, 'total', round(sum(value), 2)
+from invdb.ast_overview where dt<='${date}' group by dt
+"""
 
 def get_sql(name, date):
     if sql_dict.has_key(name):
         sql = sql_dict[name]
         return sql.replace('${date}', date)
     return ''
+
