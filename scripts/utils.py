@@ -25,4 +25,13 @@ def get_type(code):
             return 'st'
     return '-'
 
+def get_season(date_str):
+    strs = date_str.split('-')
+    if len(strs) != 3:
+        return date_str
+    mon = int(strs[1])
+    season_mon = mon - (mon + 2) % 3
+    return "%s-%02d-01" % (strs[0], season_mon)
+
+print get_season('2018-02-14 12:12:55')
 # print lastday('2016-03-01')
