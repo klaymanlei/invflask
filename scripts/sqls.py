@@ -5,7 +5,7 @@ sql_dict['hld_by_day'] = """
 select dt,portfolio,code,name,share,cost from t_hld where dt='${date}'
 """
 sql_dict['trd_by_day'] = """
-select dt,code,name,portfolio,share,prc,cst from t_trd where dt='${date}'
+select dt,code,name,portfolio,op,share,prc,cst from t_trd where dt='${date}'
 """
 sql_dict['delete_hld_by_day'] = """
 delete from t_hld where dt='${date}'
