@@ -19,9 +19,10 @@ def fetch_trd(date_str):
             trd.code = row[1]
             trd.name = row[2]
             trd.portfolio = row[3]
-            trd.share = float(row[4])
-            trd.prc = float(row[5])
-            trd.cst = float(row[6])
+            trd.op = row[4]
+            trd.share = float(row[5])
+            trd.prc = float(row[6])
+            trd.cst = float(row[7])
             trds.append(trd)
         # print hlds
         return trds
