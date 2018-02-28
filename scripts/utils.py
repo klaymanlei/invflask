@@ -33,5 +33,19 @@ def get_season(date_str):
     season_mon = mon - (mon + 2) % 3
     return "%s-%02d-01" % (strs[0], season_mon)
 
-print get_season('2018-02-14 12:12:55')
+def is_weekend(date_str):
+    datet = time.strptime(date_str, '%Y-%m-%d')
+    date = datetime.datetime(datet.tm_year, datet.tm_mon, datet.tm_mday)
+    weekday = date.weekday()
+    return weekday > 4
+
+def last_friday(date_str):
+    if is_weekend(date_str):
+        date_str = lastday(date_str)
+    if is_weekend(date_str):
+        date_str = lastday(date_str)
+    return date_str
+
+#print last_friday('2018-02-17')
+
 # print lastday('2016-03-01')

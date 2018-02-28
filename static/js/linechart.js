@@ -86,6 +86,7 @@ function drawChart(chartname, charttitle, flask_path='', type='') {
 		yAxis: [{
 			type: 'value',
 			max: 'dataMax',
+			min: 'dataMin',
 			show: false,
 			//min: 'dataMin',
 			//boundaryGap: [0, '100%'],

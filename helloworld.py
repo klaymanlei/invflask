@@ -14,7 +14,7 @@ def hello_world():
 @app.route('/ast_line')
 def ast_line():
     rs = ast_query.ast_line()
-    print rs
+    #print rs
     return json.dumps(obj = rs)
 
 if __name__ == '__main__':
