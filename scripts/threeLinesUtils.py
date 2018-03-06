@@ -22,7 +22,7 @@ def cal(hist, td, threhold):
     if td.co == lastData.co:
         return None
     if (lastData.co - lastData.op) * (td.co - lastData.co) > 0:
-        return prs(td.date, lastData.co, max(lastData.co, td.cl), min(lastData.co, td.co),  td)
+        return prs(td.date, lastData.co, max(lastData.co, td.co), min(lastData.co, td.co),  td.co)
     firstData = hist[0]
     if (lastData.co - lastData.op) * (firstData.op - td.co) > 0:
         return prs(td.date, lastData.op, max(lastData.op, td.co), min(lastData.op, td.co), td.co)
