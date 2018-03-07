@@ -37,7 +37,7 @@ def lastClose(code, dataFolder, dateStr):
     #else:
     return lastClose
 
-dateStr = '2016-01-11'
+#dateStr = '2016-01-11'
 newClose = lastClose(code, dataFolder, dateStr)
 print '=========new rec========='
 print newClose
