@@ -1,5 +1,7 @@
 #coding:utf-8
 
+import os
+
 class prs:
     def __init__(self, date, op, hi, lo, co):
         if hi < op or hi < co:
@@ -43,6 +45,49 @@ def validHist(hist, threhold):
             return False
         diff = data.co - data.op
     return True
+
+def hist(code, histFile, outFolder, dateStr, threhold):
+    hists = []
+    if not os.path.exists(histFile) or threhold < 2:
+        return hists
+    file = open(histFile, 'r')
+    maxDate = ''
+    for line in file:
+        data = line.strip().split(',')
+        prsIn = prs(data[0], float(data[1]), float(data[2]), float(data[3]), float(data[4]))
+        if prsIn.date > dateStr:
+            continue
+        if len(hists) == 0:
+            hists.append(prsIn)
+            continue
+        if len(hists) == threhold and prsIn.date < hists[0].date:
+            continue
+        i = 0
+        for i in range(0, len(hists) + 1):
+            if i == len(hists):
+                hists.append(prsIn)
+                break
+            hist = hists[i]
+            if hist.date > prsIn.date:
+                hists.insert(i, prsIn)
+                break
+        if len(hists) > threhold:
+            del hists[0]
+    file.close()
+    if len(hists) == 0:
+        return hists
+
+    dir = hists[-1].co - hists[-1].op
+    i = len(hists) - 1
+    while i >= 0:
+        if (hists[i].co - hists[i].op) * dir < 0:
+            break
+        i -= 1
+    return hists[i + 1 : ]
+
+def write(prs, outFolder, code):
+    file = open(code + '.3ls', 'a')
+    file.write('%s,%.3f,%.3f,%.3f,%.3f\n' % (prs.date, prs.op, prs.hi, prs.lo, prs.co))
 
 '''
 p1 = prs(2.0, 5.0, 2.0, 5.0)
