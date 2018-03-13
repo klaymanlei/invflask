@@ -138,7 +138,6 @@ function drawChart(chartname, charttitle, flask_path='', type='') {
 	};
 
 	myChart.setOption(option);
-	alert("get");
 
 	$.ajax({
 		type: "GET",
