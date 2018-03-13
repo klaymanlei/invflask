@@ -5,7 +5,7 @@ from scripts.config_script import *
 date_str = TODAY
 
 def read_3ls(fileName):
-    fileIn = open('scripts/' + fileName, 'r')
+    fileIn = open('data/' + fileName, 'r')
     res = []
     for line in fileIn:
         data = line.strip().split(',')
@@ -28,18 +28,21 @@ def candles(code, period):
     data = []
     dates = []
     for rec in recs:
-        #data.append({'value':(rec[0], rec[1])})
-        data.append(rec[1])
+        #data.append(rec[1])
+        data.append(rec[1][1])
         dates.append(rec[0])
-    json_dict = [['total', '2', '3', '4'], [{'name': 'total', 
-        'type': 'candlestick', 
-        #'type': 'line',
+        if len(data) > 62:
+            data.pop(0)
+            dates.pop(0)
+    json_dict = [[], [{'name': period + '_k', 
+        #'type': 'candlestick', 
+        'type': 'line',
         'itemStyle': {
             'normal': {
-                'color': '#FD1050',
-                'color0': '#0CF49B',
-                'borderColor': '#FD1050',
-                'borderColor0': '#0CF49B'
+                'color': '#DD3333',
+                'color0': '#33DD66',
+                'borderColor': '#DD3333',
+                'borderColor0': '#33DD66'
             }
         },
         #'showSymbol': False,
