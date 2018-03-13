@@ -15,30 +15,8 @@ else:
 dataFolder = '/home/hadoop/data/seasondata/'
 outFolder = '/home/hadoop/python/vflask/invflask/data/'
 
-def lastClose(code, dataFolder, dateStr):
-    season = utils.get_season(dateStr)
-    file = open(dataFolder + season, 'r')
-
-    maxDate = ''
-    lastClose = None 
-    for line in file:
-        if not ',' in line or line[:6] != code:
-            continue
-        data = line.strip().split(',')
-        if data[1] > dateStr:
-            continue
-        if data[1] > maxDate:
-            # print data[1]
-            maxDate = data[1]
-            lastClose = threeLinesUtils.prs(data[1], float(data[2]), float(data[3]), float(data[4]), float(data[5]))
-    file.close()
-    #if lastClose.op == lastClose.co:
-    #    return None
-    #else:
-    return lastClose
-
 #dateStr = '2016-01-11'
-newClose = lastClose(code, dataFolder, dateStr)
+newClose = threeLinesUtils.lastClose(code, dataFolder, dateStr)
 print '=========new rec========='
 print newClose
 if newClose == None:

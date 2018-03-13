@@ -1,6 +1,7 @@
 #coding:utf-8
 
 import os
+import utils
 
 class prs:
     def __init__(self, date, op, hi, lo, co):
@@ -86,14 +87,25 @@ def hist(code, histFile, outFolder, dateStr, threhold):
         i -= 1
     return hists[i + 1 : ]
 
+def lastClose(code, dataFolder, dateStr):
+    season = utils.get_season(dateStr)
+    file = open(dataFolder + season, 'r')
+
+    maxDate = ''
+    lastClose = None
+    for line in file:
+        if not ',' in line or line[:6] != code:
+            continue
+        data = line.strip().split(',')
+        if data[1] > dateStr:
+            continue
+        if data[1] > maxDate:
+            maxDate = data[1]
+            lastClose = threeLinesUtils.prs(data[1], float(data[2]), float(data[3]), float(data[4]), float(data[5]))
+    file.close()
+    return lastClose
+
 def write(prs, outFolder, code):
     file = open(outFolder + code + '.3ls', 'a')
     file.write('%s,%.3f,%.3f,%.3f,%.3f\n' % (prs.date, prs.op, prs.hi, prs.lo, prs.co))
 
-'''
-p1 = prs(2.0, 5.0, 2.0, 5.0)
-p2 = prs(5.0, 8.0, 5.0, 8.0)
-p3 = prs(8.0, 11.0, 8.0, 11.0)
-
-print cal([p1, p2, p3], 12.0, 3)
-'''
