@@ -13,7 +13,7 @@
 		.wrap{ width:100%;height:30%; }
 	</style> 
     <!-- 引入 ECharts 文件 -->
-    <script src="{{url_for('static', filename='js/echarts.common.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/echarts.min.js')}}"></script>
     <script src="{{url_for('static', filename='js/jquery-3.1.1.js')}}"></script>
     <script src="{{url_for('static', filename='js/linechart.js')}}"></script>
     <!--script src="catagorylist.js"></script>
@@ -30,15 +30,16 @@
 			<div id="wap_other_pv" class='chart_div'></div>
 		</div>
 		<div id="video" class="wrap">
-			<div id="newsclient_vv" class='chart_div'></div>
-			<div id="newsclient_live" class='chart_div'></div>
-			<div id="all_vv" class='chart_div'></div>
+			<div id="510050_d" class='chart_div'></div>
+			<div id="510050_w" class='chart_div'></div>
+			<div id="510050_m" class='chart_div'></div>
 		</div>
 	</div>
 	<div id="footer" style="width: 100%;height:10px;"></div>
 	<script type="text/javascript">
 		//alert("test");
 		drawChart('ast_line', 'ast_line');
+		drawChart('510050_d', 'candles_3ls', 'candles_3ls');
 //		drawChart('newsclient_dau_wm', '新闻客户端分来源DAU');
 //		drawChart('newsclient_dau_os', '新闻客户端分来源DAU');
 //		drawChart('wap_pv', '手浪整体流量');

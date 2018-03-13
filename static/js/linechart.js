@@ -29,12 +29,12 @@ function drawChart(chartname, charttitle, flask_path='', type='') {
 			},
 			text: charttitle
 		},
-        grid:{
-            x:20,
-            y:45,
-            x2:20,
-            y2:20
-        },		
+		grid:{
+			x:20,
+			y:45,
+			x2:20,
+			y2:20
+		},		
 		color: ['#66d', '#6d6', '#d66', '#6dd', '#d6d', '#dd6', '#d96'],
 		backgroundColor: '#000',
 		legend: {
@@ -61,8 +61,8 @@ function drawChart(chartname, charttitle, flask_path='', type='') {
 			}
 		},
 		xAxis: {
-			type: 'time',
-			//type: 'category',
+			//type: 'time',
+			type: 'category',
 			axisLine:{
 				lineStyle: {
 					color:'#ddd',
@@ -138,6 +138,7 @@ function drawChart(chartname, charttitle, flask_path='', type='') {
 	};
 
 	myChart.setOption(option);
+	alert("get");
 
 	$.ajax({
 		type: "GET",
@@ -149,11 +150,15 @@ function drawChart(chartname, charttitle, flask_path='', type='') {
 			legend = rs[0];
 			//alert(legend);
 			series = rs[1];
+			xAxis = rs[2];
 			//series.forEach(function(value, index, array){
 				//value.symbolSize = 4;
 				//value.areaStyle = "{normal: {}}";
 			//})
 			option = {
+				xAxis: {
+					data:xAxis
+				},
 				legend: {
 					data:legend
 				},
