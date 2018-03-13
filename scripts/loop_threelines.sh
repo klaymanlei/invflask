@@ -6,12 +6,11 @@ then
 	exit 255
 fi
 
-start_date=`date --date="$1" +%Y%m%d`
-end_date=`date --date="$2" +%Y%m%d`
+date="$1"
 
-while (("$start_date"<="$end_date"))
+while (("$date"<="$2"))
 do
-    echo "$3 $start_date"
-    rs=`$3 $start_date`
-    start_date=`date --date="$start_date +1day" +%Y%m%d`
+    echo "$3 $date"
+    rs=`$3 $date`
+    date=`date --date="$date +1day" +%Y%m%d`
 done
