@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, request, render_template
 import config_flask
 import json
 import ast_query
@@ -18,9 +18,10 @@ def ast_line():
     #print rs
     return json.dumps(obj = rs)
 
-@app.route('/candles_3ls')
-def candles_3ls():
-    rs = query_3ls.candles('510050', 'day')
+@app.route('/candles_3ls/<code>')
+def candles_3ls(code):
+    period = request.args.get('type')
+    rs = query_3ls.candles(code, period)
     #print rs
     return json.dumps(obj = rs)
 
