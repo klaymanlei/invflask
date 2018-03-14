@@ -47,9 +47,9 @@ def validHist(hist, threhold):
         diff = data.co - data.op
     return True
 
-def hist(code, histFile, outFolder, dateStr, threhold):
+def hist(histFile, dateStr, threhold, isBefore = utils.before_day):
     hists = []
-    histFile = outFolder + histFile
+    #histFile = outFolder + histFile
     if not os.path.exists(histFile) or threhold < 2:
         return hists
     file = open(histFile, 'r')
@@ -57,7 +57,7 @@ def hist(code, histFile, outFolder, dateStr, threhold):
     for line in file:
         data = line.strip().split(',')
         prsIn = prs(data[0], float(data[1]), float(data[2]), float(data[3]), float(data[4]))
-        if prsIn.date > dateStr:
+        if not isBefore(dateStr, prsIn.date):
             continue
         if len(hists) == 0:
             hists.append(prsIn)

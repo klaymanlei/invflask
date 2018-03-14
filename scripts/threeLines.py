@@ -21,7 +21,7 @@ print '=========new rec========='
 print newClose
 if newClose == None:
     exit()
-hists = threeLinesUtils.hist(code, code + '.3ls', outFolder, dateStr, 3)
+hists = threeLinesUtils.hist(outFolder + code + '.3ls', dateStr, 3)
 print '=========hists========='
 for hist in hists:
     print hist
