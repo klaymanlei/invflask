@@ -46,6 +46,21 @@ def last_friday(date_str):
         date_str = lastday(date_str)
     return date_str
 
-#print last_friday('2018-02-17')
+def parse_date(dateStr):
+    return datetime.datetime.strptime(dateStr, '%Y-%m-%d')
 
-# print lastday('2016-03-01')
+def before_day(dateStr1, dateStr2):
+    date1 = parse_date(dateStr1)
+    date2 = parse_date(dateStr2)
+    return date2 < date1
+
+def before_week(dateStr1, dateStr2):
+    date1 = parse_date(dateStr1)
+    date2 = parse_date(dateStr2)
+    return date2.strftime('%Y%W') < date1.strftime('%Y%W')
+
+def before_month(dateStr1, dateStr2):
+    date1 = parse_date(dateStr1)
+    date2 = parse_date(dateStr2)
+    return date2.strftime('%Y%m') < date1.strftime('%Y%m')
+
