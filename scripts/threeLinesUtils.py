@@ -48,6 +48,7 @@ def validHist(hist, threhold):
 
 def hist(code, histFile, outFolder, dateStr, threhold):
     hists = []
+    histFile = outFolder + histFile
     if not os.path.exists(histFile) or threhold < 2:
         return hists
     file = open(histFile, 'r')
@@ -86,7 +87,7 @@ def hist(code, histFile, outFolder, dateStr, threhold):
     return hists[i + 1 : ]
 
 def write(prs, outFolder, code):
-    file = open(code + '.3ls', 'a')
+    file = open(outFolder + code + '.3ls', 'a')
     file.write('%s,%.3f,%.3f,%.3f,%.3f\n' % (prs.date, prs.op, prs.hi, prs.lo, prs.co))
 
 '''

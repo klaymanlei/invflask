@@ -1,3 +1,11 @@
+#!/bin/bash
+
+if [ $# -ne 2 ]
+then
+        echo "Usage: $0 <yyyymmdd> <code>"
+        exit 255
+fi
+
 date=`date --date="$1" +%Y-%m-%d`
 echo $date
-python threeLines.py 510050 $date
+python /home/hadoop/python/vflask/invflask/scripts/threeLines.py $2 $date

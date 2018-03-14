@@ -12,8 +12,8 @@ else:
     code = sys.argv[1]
     dateStr = sys.argv[2]
 
-dataFolder = './'
-outFolder = './'
+dataFolder = '/home/hadoop/data/seasondata/'
+outFolder = '/home/hadoop/python/vflask/invflask/data/'
 
 def lastClose(code, dataFolder, dateStr):
     season = utils.get_season(dateStr)
