@@ -101,7 +101,7 @@ def lastClose(code, dataFolder, dateStr):
             continue
         if data[1] > maxDate:
             maxDate = data[1]
-            lastClose = threeLinesUtils.prs(data[1], float(data[2]), float(data[3]), float(data[4]), float(data[5]))
+            lastClose = prs(data[1], float(data[2]), float(data[3]), float(data[4]), float(data[5]))
     file.close()
     return lastClose
 
