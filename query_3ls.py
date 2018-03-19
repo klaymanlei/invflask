@@ -28,15 +28,15 @@ def candles(code, period):
     data = []
     dates = []
     for rec in recs:
-        #data.append(rec[1])
-        data.append(rec[1][1])
+        data.append(rec[1])
+        #data.append(rec[1][1])
         dates.append(rec[0])
         if len(data) > 62:
             data.pop(0)
             dates.pop(0)
     json_dict = [[], [{'name': period + '_k', 
-        #'type': 'candlestick', 
-        'type': 'line',
+        'type': 'candlestick', 
+        #'type': 'line',
         'itemStyle': {
             'normal': {
                 'color': '#DD3333',
