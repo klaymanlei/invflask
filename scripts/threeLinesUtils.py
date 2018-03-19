@@ -6,8 +6,10 @@ import utils
 class prs:
     def __init__(self, date, op, hi, lo, co):
         if hi < op or hi < co:
+            print '[ERROR] %s, %f, %f, %f, %f' % (date, op, hi, lo, co)
             raise AttributeError("invalid hi value")
         if lo > op or lo > co:
+            print '[ERROR] %s, %f, %f, %f, %f' % (date, op, hi, lo, co)
             raise AttributeError("invalid lo value")
         self.date = date
         self.op = op
@@ -50,6 +52,7 @@ def validHist(hist, threhold):
 def hist(histFile, dateStr, threhold, isBefore = utils.before_day):
     hists = []
     #histFile = outFolder + histFile
+    #print histFile
     if not os.path.exists(histFile) or threhold < 2:
         return hists
     file = open(histFile, 'r')
@@ -57,6 +60,7 @@ def hist(histFile, dateStr, threhold, isBefore = utils.before_day):
     for line in file:
         data = line.strip().split(',')
         prsIn = prs(data[0], float(data[1]), float(data[2]), float(data[3]), float(data[4]))
+        #print 'is before %s/%s: %s' % (dateStr, prsIn.date, isBefore(dateStr, prsIn.date))
         if not isBefore(dateStr, prsIn.date):
             continue
         if len(hists) == 0:
@@ -105,7 +109,17 @@ def lastClose(code, dataFolder, dateStr):
     file.close()
     return lastClose
 
-def write(prs, outFolder, code):
-    file = open(outFolder + code + '.3ls', 'a')
-    file.write('%s,%.3f,%.3f,%.3f,%.3f\n' % (prs.date, prs.op, prs.hi, prs.lo, prs.co))
+def write(prs, outFile, dateStr, isBefore = utils.before_day):
+    bkFile = outFile + '.' + dateStr
+    if os.path.exists(bkFile):
+        os.remove(bkFile)
+    os.rename(outFile, bkFile)
+    inFile = open(bkFile, 'r')
+    outFile = open(outFile, 'w')
+    for line in inFile:
+        if isBefore(dateStr, line[:10]):
+            outFile.write(line)
+    inFile.close()
+    outFile.write('%s,%.3f,%.3f,%.3f,%.3f\n' % (prs.date, prs.op, prs.hi, prs.lo, prs.co))
+    outFile.close()
 

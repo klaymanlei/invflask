@@ -21,7 +21,7 @@ print '=========new rec========='
 print newClose
 if newClose == None:
     exit()
-hists = threeLinesUtils.hist(outFolder + code + '.3ls', dateStr, 3)
+hists = threeLinesUtils.hist(outFolder + code + '.3lsw', dateStr, 3, utils.before_week)
 print '=========hists========='
 for hist in hists:
     print hist
@@ -39,4 +39,4 @@ else:
 print '=========res========='
 print td
 if td != None:
-    threeLinesUtils.write(td, outFolder + code + '.3ls', dateStr)
+    threeLinesUtils.write(td, outFolder + code + '.3lsw', dateStr, utils.before_week)
