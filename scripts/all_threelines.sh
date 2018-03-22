@@ -16,4 +16,5 @@ do
 	echo $code
 	/home/hadoop/python/vflask/invflask/scripts/threelines.sh $date $code
 	/home/hadoop/python/vflask/invflask/scripts/threelineswk.sh $date $code
+	/home/hadoop/python/vflask/invflask/scripts/threelinesmt.sh $date $code
 done
