@@ -31,7 +31,8 @@ function drawChart(chartname, charttitle, flask_path='', type='', href='') {
 				color:'#ddd'
 			},
 			text: charttitle,
-			link: href
+			link: href,
+			target: 'self'
 		},
 		grid:{
 			x:20,
