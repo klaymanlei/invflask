@@ -3,21 +3,14 @@
 <head>
     <meta charset="utf-8">
 	<title>周报相关指标监控</title>
-	<style> 
-		body{ background-color:#333; text-align:left; font-family:'Microsoft YaHei'; color:#ddd } 
-		.header_div{width:100%;height:50px;font-weight:bold;font-size:22px;}
-		.chart_div{ margin:5px; width:32%; height:100%; float:left; text-align: left } 
-		.chart_div_small{ margin:5px; width:24%; height:100%; float:left; text-align: left } 
-		.main{ margin:0 auto; width:100%; height:700px }
-		.top_wrap{ width:100%;height:20%; }
-		.wrap{ width:100%;height:30%; }
-	</style> 
     <!-- 引入 ECharts 文件 -->
     <script src="{{url_for('static', filename='js/echarts.min.js')}}"></script>
     <script src="{{url_for('static', filename='js/jquery-3.1.1.js')}}"></script>
     <script src="{{url_for('static', filename='js/linechart.js')}}"></script>
     <script src="{{url_for('static', filename='js/wordcloud.js')}}"></script>
     <script src="{{url_for('static', filename='js/echarts-wordcloud.min.js')}}"></script>
+
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/default.css')}}" />
 
     <!--script src="catagorylist.js"></script>
     <script src="piechart.js"></script-->
