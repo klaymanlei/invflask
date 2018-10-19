@@ -120,6 +120,7 @@ def write(prs, outFile, dateStr, isBefore = utils.before_day):
         if isBefore(dateStr, line[:10]):
             outFile.write(line)
     inFile.close()
-    outFile.write('%s,%.3f,%.3f,%.3f,%.3f\n' % (prs.date, prs.op, prs.hi, prs.lo, prs.co))
+    if prs != None:
+        outFile.write('%s,%.3f,%.3f,%.3f,%.3f\n' % (prs.date, prs.op, prs.hi, prs.lo, prs.co))
     outFile.close()
 

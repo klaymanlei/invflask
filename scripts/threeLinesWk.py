@@ -38,5 +38,5 @@ else:
 
 print '=========res========='
 print td
-if td != None:
-    threeLinesUtils.write(td, outFolder + code + '.3lsw', dateStr, utils.before_week)
+#if td != None:
+threeLinesUtils.write(td, outFolder + code + '.3lsw', dateStr, utils.before_week)
