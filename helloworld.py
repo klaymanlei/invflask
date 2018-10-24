@@ -12,6 +12,10 @@ def hello_world():
     return render_template('summary.html')
     # return 'hello world'
 
+@app.route('/ast_summary')
+def ast_summary():
+    return render_template('ast_summary.html')
+
 @app.route('/ast_line')
 def ast_line():
     rs = ast_query.ast_line()
