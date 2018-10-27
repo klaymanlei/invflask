@@ -22,7 +22,7 @@ CREATE TABLE `t_holding` (
 CREATE TABLE `t_transaction` (
   `dt` date NOT NULL DEFAULT '1970-01-01' COMMENT '日期',
   `code` varchar(50) NOT NULL DEFAULT '-' COMMENT '代码',
-  `operation` decimal(20,4) NOT NULL DEFAULT '0.0000' COMMENT '交易类型',
+  `operation` varchar(50) NOT NULL DEFAULT '-' COMMENT '交易类型',
   `portfolio` varchar(50) NOT NULL DEFAULT '-' COMMENT '组合',
   `sec_type` varchar(50) NOT NULL DEFAULT '-' COMMENT '证券类型',
   `quantity` decimal(20,4) NOT NULL DEFAULT '0.0000' COMMENT '份额',
