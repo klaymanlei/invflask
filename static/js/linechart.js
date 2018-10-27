@@ -1,4 +1,4 @@
-function drawChart(chartname, charttitle, flask_path='', type='') {
+function drawChart(chartname, charttitle, flask_path='', type='', href='') {
 	var myChart = echarts.init(document.getElementById(chartname));
 	if (flask_path == '')
 		flask_path = chartname;
@@ -20,6 +20,9 @@ function drawChart(chartname, charttitle, flask_path='', type='') {
 	var legend = [];
 	var series = [];
 
+	//if (href != '')
+	//	charttitle='<a href="' + href + '">' + charttitle + '</a>';	
+
 	var option = {
 		animation: false,
 		title: {
@@ -27,7 +30,9 @@ function drawChart(chartname, charttitle, flask_path='', type='') {
 				fontSize: 14,
 				color:'#ddd'
 			},
-			text: charttitle
+			text: charttitle,
+			link: href,
+			target: 'self'
 		},
 		grid:{
 			x:20,

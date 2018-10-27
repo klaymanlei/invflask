@@ -24,10 +24,17 @@ CREATE TABLE `t_trd` (
   `code` varchar(50) NOT NULL DEFAULT '-' COMMENT '代码',
   `name` varchar(50) DEFAULT '-',
   `portfolio` varchar(50) NOT NULL DEFAULT '-' COMMENT '组合',
+  `op` varchar(50) NOT NULL DEFAULT '-' COMMENT '操作',
   `share` decimal(20,4) NOT NULL DEFAULT '0.0000' COMMENT '份额',
   `prc` decimal(20,4) NOT NULL DEFAULT '0.0000' COMMENT '单价',
   `cst` decimal(20,4) NOT NULL DEFAULT '0.0000' COMMENT '其他费用',
   PRIMARY KEY (`dt`,`code`,`portfolio`,`share`,`prc`,`cst`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+
+CREATE TABLE `t_code` (
+  `code` varchar(50) NOT NULL DEFAULT '-' COMMENT '维度类型2',
+  `name` varchar(50) DEFAULT '-',
+  `type` varchar(50) DEFAULT '-'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`leidayu`@`%` 
