@@ -43,7 +43,7 @@ CREATE VIEW `v_asset_overview` AS (
 select 
   `t_asset`.`dt` AS `dt`,
   `t_asset`.`type` AS `type`,
-  sum((`t_asset`.`share` * `t_asset`.`prc`)) AS `value` 
+  sum((`t_asset`.`share` * `t_asset`.`price`)) AS `value` 
 from `t_asset` 
 group by 
   `t_asset`.`dt`,
@@ -54,7 +54,7 @@ CREATE VIEW `v_asset_portfolio` AS (
 select 
   `t_asset`.`dt` AS `dt`,
   `t_asset`.`portfolio` AS `portfolio`,
-  sum((`t_asset`.`share` * `t_asset`.`prc`)) AS `value` 
+  sum((`t_asset`.`share` * `t_asset`.`price`)) AS `value` 
 from `t_asset` 
 group by 
   `t_asset`.`dt`,
