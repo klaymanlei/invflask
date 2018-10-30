@@ -13,6 +13,7 @@ CREATE TABLE `t_holding` (
   `dt` date NOT NULL DEFAULT '1970-01-01' COMMENT '日期',
   `portfolio` varchar(50) NOT NULL DEFAULT '-' COMMENT '组合',
   `code` varchar(50) NOT NULL DEFAULT '-' COMMENT '代码',
+  `sec_type` varchar(50) NOT NULL DEFAULT '-' COMMENT '证券类型',
   `quantity` decimal(20,4) DEFAULT '0.0000' COMMENT '份额',
   `amount` decimal(20,4) DEFAULT '0.0000' COMMENT '总成本',
   PRIMARY KEY (`dt`,`portfolio`,`code`)
