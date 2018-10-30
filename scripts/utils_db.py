@@ -1,4 +1,5 @@
 #coding:utf-8
+import sys
 import MySQLdb
 import traceback
 
@@ -6,45 +7,54 @@ import sqls
 from pu import *
 from config_script import *
 
-def fetch_trd(date_str):
+reload(sys)
+sys.setdefaultencoding('utf8')
+
+def fetch_transaction(date_start, date_end = ''):
+    if date_end == '':
+        date_end = date_start
     try:
-        trds = []
-        sql = sqls.get_sql('trd_by_day', date_str)
+        trans_list = []
+        sql = sqls.get_sql('trans_by_day', date_start, date_end)
         # print sql
         rows = query(sql)
         # print rows
         for row in rows:
-            trd = trd_pu()
-            trd.date = row[0]
-            trd.code = row[1]
-            trd.name = row[2]
-            trd.portfolio = row[3]
-            trd.op = row[4]
-            trd.share = float(row[5])
-            trd.prc = float(row[6])
-            trd.cst = float(row[7])
-            trds.append(trd)
-        # print hlds
-        return trds
+            trans = transaction()
+            trans.date = str(row[0])
+            trans.code = row[1]
+            trans.operation = row[2]
+            trans.portfolio = row[3]
+            trans.sec_type = row[4]
+            trans.quantity = float(row[5])
+            trans.price = float(row[6])
+            trans.tax = float(row[7])
+            trans.other_charges = float(row[8])
+            trans.amount = float(row[9])
+            trans_list.append(trans)
+        #print trans_list[0]
+        return trans_list
     except Exception, e:
         print "Error occured"
         traceback.print_exc()
 
-def fetch_hld(date_str):
+def fetch_holding(date_start, date_end = ''):
+    if date_end == '':
+        date_end = date_start
     try:
         hlds = []
-        sql = sqls.get_sql('hld_by_day', date_str)
+        sql = sqls.get_sql('hld_by_day', date_start, date_end)
         # print sql
         rows = query(sql)
         # print rows
         for row in rows:
-            hld = hld_pu()
+            hld = holding()
             hld.date = row[0]
             hld.portfolio = row[1]
             hld.code = row[2]
-            hld.name = row[3]
-            hld.share = float(row[4])
-            hld.cost = float(row[5])
+            hld.sec_type = row[3]
+            hld.quantity = float(row[4])
+            hld.amount = float(row[5])
             hlds.append(hld)
         # print hlds
         return hlds
@@ -52,9 +62,9 @@ def fetch_hld(date_str):
         print "Error occured"
         traceback.print_exc()
 
-def delete_hld(date_str):
+def delete_hld(date_start, date_end):
     try:
-        sql = sqls.get_sql('delete_hld_by_day', date_str)
+        sql = sqls.get_sql('delete_hld_by_day', date_start, date_end)
         update(sql)
     except Exception, e:
         traceback.print_exc()
@@ -62,11 +72,25 @@ def delete_hld(date_str):
 def save_hld(hlds):
     try:
         sql_template = sqls.sql_dict['save_hld']
-        for code,hld in hlds.items():
-            sql = sql_template % hld.to_tuple() 
+        for (portfolio, code), hld in hlds.items():
+            sql = sql_template % hld.to_tuple()
+            #print sql
             update(sql)
     except Exception, e:
         traceback.print_exc()
+
+def hld_load_data(path, date_start, date_end):
+    load_data(path, 't_holding', date_start, date_end)
+
+def load_data(path, table, date_start, date_end):
+    try:
+        sql_template = sqls.sql_dict['load_data']
+        sql = sql_template % (path, table)
+        print sql
+        update(sql)
+    except Exception, e:
+        traceback.print_exc()
+
 
 def delete_ast(date_str):
     try:

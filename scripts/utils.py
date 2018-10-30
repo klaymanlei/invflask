@@ -3,10 +3,13 @@ import datetime
 import time
 
 def lastday(date_str):
+    return date_add(date_str, -1)
+
+def date_add(date_str, delta = 1):
     datet = time.strptime(date_str, '%Y-%m-%d')
     date = datetime.datetime(datet.tm_year, datet.tm_mon, datet.tm_mday)
-    lastday = date + datetime.timedelta(days = -1)
-    return lastday.strftime('%Y-%m-%d') 
+    target = date + datetime.timedelta(days = delta)
+    return target.strftime('%Y-%m-%d')
 
 def read_file(file_path, split_char):
     file_in = open(file_path, 'r')

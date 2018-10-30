@@ -1,37 +1,44 @@
 #coding:utf-8
-class hld_pu:
+
+class holding:
     date = ''
     portfolio = '-'
     code = '-'
-    name = '-'
-    share = 0.0
-    cost = 0.0
+    sec_type = '-'
+    quantity = 0.0
+    amount = 0.0
 
     def to_tuple(self):
-        return (self.date, self.portfolio, self.code, 
-            self.name, self.share, self.cost)
-    
+        return (self.date, self.portfolio, self.code, self.sec_type,
+                float(self.quantity), float(self.amount))
+
+    def to_str_tuple(self):
+        return (self.date, self.portfolio, self.code, self.sec_type,
+                str(self.quantity), str(self.amount))
+
     def __str__(self):
-        return '{hld_pu: %s, %s, %s, %s, %f, %f}' % (
-            self.date, self.portfolio, self.code, 
-            self.name, self.share, self.cost)
+        return '{holding: %s, %s, %s, %s, %f, %f}' % (
+            self.date, self.portfolio, self.code, self.sec_type,
+            self.quantity, self.amount)
 
     __repr__ = __str__
 
-class trd_pu:
+class transaction:
     date = ''
     code = '-'
-    name = '-'
+    operation = '-'
     portfolio = '-'
-    op = '-'
-    share = 0.0
-    prc = 0.0
-    cst = 0.0
+    sec_type = '-'
+    quantity = 0.0
+    price = 0.0
+    tax = 0.0
+    other_charges = 0.0
+    amount = 0.0
 
     def __str__(self):
-        return '{trd_pu: %s, %s, %s, %s, %s, %f, %f, %f}' % (
-            self.date, self.code, self.name, self.portfolio,
-            self.op, self.share, self.prc, self.cst)
+        return '{transaction: %s, %s, %s, %s, %s, %f, %f, %f, %f, %f}' % (
+            self.date, self.code, self.operation, self.portfolio,
+            self.sec_type, self.quantity, self.price, self.tax, self.other_charges, self.amount)
 
     __repr__ = __str__
 
