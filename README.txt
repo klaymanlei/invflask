@@ -20,18 +20,20 @@ CREATE TABLE `t_holding` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `t_transaction` (
-  `dt` date NOT NULL DEFAULT '1970-01-01' COMMENT '日期',
-  `code` varchar(50) NOT NULL DEFAULT '-' COMMENT '代码',
-  `operation` varchar(50) NOT NULL DEFAULT '-' COMMENT '交易类型',
-  `portfolio` varchar(50) NOT NULL DEFAULT '-' COMMENT '组合',
-  `sec_type` varchar(50) NOT NULL DEFAULT '-' COMMENT '证券类型',
-  `quantity` decimal(20,4) NOT NULL DEFAULT '0.0000' COMMENT '份额',
-  `price` decimal(20,4) NOT NULL DEFAULT '0.0000' COMMENT '单价',
-  `tax` decimal(20,4) NOT NULL DEFAULT '0.0000' COMMENT '税费',
-  `other_charges` decimal(20,4) NOT NULL DEFAULT '0.0000' COMMENT '其他费用',
-  `amount` decimal(20,4) NOT NULL DEFAULT '0.0000' COMMENT '成本',
-  PRIMARY KEY (`dt`,`code`,`operation`,`portfolio`,`quantity`,`price`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `dt` DATETIME NOT NULL,
+  `code` VARCHAR(50) NOT NULL,
+  `operation` VARCHAR(50) NOT NULL,
+  `portfolio` VARCHAR(50) NOT NULL,
+  `sec_type` VARCHAR(50) DEFAULT NULL,
+  `quantity` FLOAT NOT NULL,
+  `price` FLOAT NOT NULL,
+  `tax` FLOAT DEFAULT NULL,
+  `other_charges` FLOAT DEFAULT NULL,
+  `amount` FLOAT DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_t_transaction` (`dt`,`code`,`operation`,`portfolio`,`price`)
+) ENGINE=MYISAM AUTO_INCREMENT=568 DEFAULT CHARSET=utf8
 
 CREATE TABLE `t_code` (
   `code` varchar(50) NOT NULL DEFAULT '-' COMMENT '维度类型2',
