@@ -2,8 +2,8 @@
 import datetime
 import time
 
-DB_SERVER = '127.0.0.1'
-DB_PORT = 3306
+DB_SERVER = '10.88.15.50'
+DB_PORT = 23306
 DB_USER = 'leidayu'
 DB_PW = 'leidayu'
 DB = 'invdb'
