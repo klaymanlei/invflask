@@ -37,6 +37,10 @@ def save_all_holdings(hlds):
     db.session.add_all(hlds)
     db.session.commit()
 
+def save_all_asset(assets):
+    db.session.add_all(assets)
+    db.session.commit()
+
 def import_code_prc(path):
     file = open(path, 'r')
     data = {}
@@ -53,9 +57,22 @@ def fetch_holding(start_date, end_date = '', code = ''):
     else:
         return Holding.query.filter(Holding.dt >= start_date, Holding.dt <= end_date, Holding.code == code).all()
 
+def fetch_hist_price(code, start_date, end_date = ''):
+    start_date, end_date, code = process_params(start_date, end_date, code)
+    return Hist_price.query.filter(Hist_price.dt >= start_date, Hist_price.dt <= end_date, Hist_price.code == code).all()
+
+def fetch_all_hist_price():
+    return Hist_price.query.all()
+
 def delete_holding(start_date, end_date = ''):
     start_date, end_date, code = process_params(start_date, end_date, '')
     sql = sqls.get_sql('delete_hld_by_day', start_date, end_date)
+    db.session.execute(sql)
+    db.session.commit()
+
+def delete_asset(start_date, end_date = ''):
+    start_date, end_date, code = process_params(start_date, end_date, '')
+    sql = sqls.get_sql('delete_ast_by_day', start_date, end_date)
     db.session.execute(sql)
     db.session.commit()
 
@@ -122,27 +139,33 @@ def init_holding():
     db.session.add_all(hlds)
     db.session.commit()
 
-#create_tables()
-#init_holding()
+if __name__ == '__main__':
+    print 'main'
+    #create_tables()
+    #init_holding()
 
-#import_code_prc('../../../data/code_price.txt')
+    #import_code_prc('../../../data/code_price.txt')
 
-#add_user('leidayu', 'leidayu', 'leidayu@123.com', 'admin')
+    #add_user('leidayu', 'leidayu', 'leidayu@123.com', 'admin')
 
-# query data
-#user = fetch_user(email_like='123')
-#transactions  = fetch_transaction('2016-03-07', '2016-03-31', '204001')
-#print transactions
+    # query data
+    #user = fetch_user(email_like='123')
+    #transactions  = fetch_transaction('2016-03-07', '2016-03-31', '204001')
+    #print transactions
 
-# modify data
-#user.role = 'admin'
-#db.session.add(user)
-#db.session.commit()
+    # modify data
+    #user.role = 'admin'
+    #db.session.add(user)
+    #db.session.commit()
 
-# remove data
-#db.session.delete(user)
-#db.session.commit()
+    # remove data
+    #db.session.delete(user)
+    #db.session.commit()
 
-# fetch holding
-#holdings = fetch_holding('2016-01-01', code = '510050')
-#print holdings
+    # fetch holding
+    #holdings = fetch_holding('2016-01-01', code = '510050')
+    #print holdings
+
+    hist_price = fetch_hist_price('600029', '2018-09-21')
+    if len(hist_price) > 0:
+        print hist_price[0].price * 1000

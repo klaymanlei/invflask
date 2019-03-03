@@ -17,7 +17,7 @@ INSERT INTO invdb.t_holding (dt, portfolio, code, sec_type, quantity, amount)
 VALUES ('%s', '%s', '%s', '%s', '%f', '%f')
 """
 sql_dict['delete_ast_by_day'] = """
-delete from t_ast where dt between '${date_start}' and '${date_end}'
+delete from t_asset where dt between '${date_start}' and '${date_end}'
 """
 sql_dict['save_ast'] = """
 INSERT INTO invdb.t_ast (dt, portfolio, CODE, NAME, TYPE, SHARE, prc)
