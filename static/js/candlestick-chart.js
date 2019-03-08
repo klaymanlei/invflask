@@ -1,4 +1,4 @@
-function drawLineChart(chartname, charttitle, flask_path='', href='') {
+function drawChart(chartname, charttitle, flask_path='', type='', href='') {
 	var myChart = echarts.init(document.getElementById(chartname));
 	if (flask_path == '')
 		flask_path = chartname;
@@ -148,7 +148,7 @@ function drawLineChart(chartname, charttitle, flask_path='', href='') {
 		type: "GET",
 		async: true,
 		url: flask_path,
-		//data: {date:dt_str, type:type},
+		data: {date:dt_str, type:type},
 		dataType: "json",
 		success: function(rs){
 			legend = rs[0];
