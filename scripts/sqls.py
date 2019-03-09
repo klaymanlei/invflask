@@ -24,8 +24,8 @@ INSERT INTO invdb.t_ast (dt, portfolio, CODE, NAME, TYPE, SHARE, prc)
 VALUES ('${date_start}', '%s', '%s', '%s', '%s', '%f', '%f')
 """
 sql_dict['total_ast'] = """
-select dt, 'total', round(sum(value), 2)
-from invdb.ast_overview where dt between '${date_start}' and '${date_end}' group by dt
+select dt, 'total', round(sum(amount), 2)
+from invest.t_asset where dt between '${date_start}' and '${date_end}' group by dt
 """
 sql_dict['load_data'] = """
 load data local infile '%s' into table %s;

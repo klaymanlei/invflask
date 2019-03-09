@@ -1,10 +1,12 @@
 #coding:utf-8
 from utils_db import *
 from scripts.config_script import *
+import scripts.utils
 
 date_str = TODAY
 
 def ast_line():
+    date_end = utils.date_add(date_str, -62)
     recs = fetch_total_ast(date_str)
     data = []
     dates = []
