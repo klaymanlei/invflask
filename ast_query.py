@@ -6,8 +6,8 @@ from scripts import utils
 date_str = TODAY
 
 def ast_line():
-    date_start = utils.date_add(date_end, -366)
-    recs = fetch_total_ast(date_start, date_end)
+    date_start = utils.date_add(date_str, -366)
+    recs = fetch_total_ast(date_start, date_str)
     data = []
     dates = []
     for rec in recs:
