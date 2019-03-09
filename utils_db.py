@@ -4,10 +4,10 @@ import traceback
 from scripts.utils_db import query,update
 import scripts.sqls
 
-def fetch_total_ast(date_str):
+def fetch_total_ast(date_start, date_end):
     try:
         asts = []
-        sql = scripts.sqls.get_sql('total_ast_before', date_str)
+        sql = scripts.sqls.get_sql('total_ast', date_start, date_end)
         print "sql:", sql
         rows = query(sql)
         for row in rows:
