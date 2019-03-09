@@ -38,10 +38,11 @@ def update_asset_by_date(date_start, date_end, hist_price_dict):
                         break
                     tmp_date = utils.date_add(tmp_date, -1)
                 if tmp_date < '2016-01-01':
-                    hist_price = 0
+                    #hist_price = 0
+                    asset_tmp.amount = hld.amount
                 else:
                     hist_price = float(hist_price_dict[(asset_tmp.code, tmp_date)])
-                asset_tmp.amount = q * hist_price
+                    asset_tmp.amount = q * hist_price
                 #if date == '2018-05-31':
                 #    print asset_tmp
                 #    print hld
