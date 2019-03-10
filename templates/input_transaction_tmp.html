@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新建交易</title>
+</head>
+<body>
+<form action="insert_trans" method="get">
+  <p>日期: <input type="text" name="date" /></p>
+  <p>编码: <input type="text" name="code" value="-"/></p>
+  <p>操作: <select name="oper">
+    <option value ="买入">买入</option>
+    <option value ="卖出">卖出</option>
+    <option value="本金转移">本金转移</option>
+    <option value="红利差异税">红利差异税</option>
+    <option value="红股入账">红股入账</option>
+    <option value="股息入帐">股息入帐</option>
+    <option value="行权">行权</option>
+    <option value="行权交收现券">行权交收现券</option>
+    <option value="补充本金">补充本金</option>
+    <option value="配股缴款">配股缴款</option>
+    <option value="配股入账">配股入账</option>
+    <option value="利息归本">利息归本</option>
+  </select></p>
+  <p>组合: <select name="portf">
+    <option value ="freedom">freedom</option>
+    <option value ="other">other</option>
+    <option value="oth_funds">oth_funds</option>
+    <option value="ss50_fund">ss50_fund</option>
+    <option value="ss50_lowestpb">ss50_lowestpb</option>
+  </select></p>
+  <p>类型: <select name="sectype">
+    <option value="stock">stock</option>
+    <option value="fund">fund</option>
+    <option value="anti-repo">anti-repo</option>
+    <option value="options">options</option>
+    <option value="other">other</option>
+  </select></p>
+  <p>数量: <input type="text" name="quantity" value="0"/></p>
+  <p>价格: <input type="text" name="price" value="0"/></p>
+  <p>税费: <input type="text" name="tax" value="0"/></p>
+  <p>其他: <input type="text" name="othercharge" value="0"/></p>
+  <p>金额: <input type="text" name="amount" value="0"/></p>
+  <input type="submit" value="Submit" />
+</form>
+</body>
+</html>
