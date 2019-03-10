@@ -33,6 +33,13 @@ def fetch_transaction(start_date, end_date = '', code = ''):
     else:
         return Transaction.query.filter(Transaction.dt >= start_date, Transaction.dt <= end_date, Transaction.code == code).all()
 
+def save_transaction(dt, code, oper, portf, sectype, quantity, price, tax, othercharge, amount):
+    trans = Transaction(dt=dt, code=code, operation=oper, portfolio=portf, sec_type=sectype, quantity=quantity,
+                        price=price,
+                        tax=tax, other_charges=othercharge, amount=amount)
+    db.session.add(trans)
+    db.session.commit()
+
 def save_all_holdings(hlds):
     db.session.add_all(hlds)
     db.session.commit()
