@@ -24,11 +24,11 @@ class Transaction(db.Model):
     operation = db.Column(db.String(50))
     portfolio = db.Column(db.String(50))
     sec_type = db.Column(db.String(50))
-    quantity = db.Column(db.Float)
-    price = db.Column(db.Float)
-    tax = db.Column(db.Float)
-    other_charges = db.Column(db.Float)
-    amount = db.Column(db.Float)
+    quantity = db.Column(db.DECIMAL(15, 4))
+    price = db.Column(db.DECIMAL(15, 4))
+    tax = db.Column(db.DECIMAL(15, 4))
+    other_charges = db.Column(db.DECIMAL(15, 4))
+    amount = db.Column(db.DECIMAL(15, 4))
 
     def __repr__(self):
         return '<%s: %d, %s, %s>' % (self.__class__.__name__, self.id, self.dt, self.code)
@@ -41,7 +41,7 @@ class Hist_price(db.Model):
     id = db.Column(db.Integer, primary_key = True, autoincrement = True)
     dt = db.Column(db.Date, index = True)
     code = db.Column(db.String(50))
-    price = db.Column(db.Float)
+    price = db.Column(db.DECIMAL(15, 4))
 
     def __repr__(self):
         return '<%s: %s, %s, %s>' % (self.__class__.__name__, self.dt, self.code, self.price)
@@ -56,8 +56,8 @@ class Holding(db.Model):
     portfolio = db.Column(db.String(50))
     code = db.Column(db.String(50))
     sec_type = db.Column(db.String(50))
-    quantity = db.Column(db.Float)
-    amount = db.Column(db.Float)
+    quantity = db.Column(db.DECIMAL(15, 4))
+    amount = db.Column(db.DECIMAL(15, 4))
 
     def __repr__(self):
         return '<%s: %s, %s, %s, %f>' % (self.__class__.__name__, self.dt, self.portfolio, self.code, self.amount)
@@ -72,8 +72,8 @@ class Asset(db.Model):
     portfolio = db.Column(db.String(50))
     code = db.Column(db.String(50))
     sec_type = db.Column(db.String(50))
-    quantity = db.Column(db.Float)
-    amount = db.Column(db.Float)
+    quantity = db.Column(db.DECIMAL(15, 4))
+    amount = db.Column(db.DECIMAL(15, 4))
 
     def __repr__(self):
         return '<%s: %s, %s, %s, %f>' % (self.__class__.__name__, self.dt, self.portfolio, self.code, self.amount)
