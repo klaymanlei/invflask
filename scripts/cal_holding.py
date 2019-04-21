@@ -58,11 +58,11 @@ def update_hold_dict(hlds_dict, trans_list):
             if hld == None:
                 hld = create_holding(trans)
                 hlds_dict[(hld.portfolio, hld.code)] = hld
-            hld.quantity += trans.quantity
-            hld.amount -= trans.amount
+            hld.quantity = float(hld.quantity) + float(trans.quantity)
+            hld.amount = float(hld.amount) - float(trans.amount)
             if hld.quantity == 0:
                 hlds_dict.pop((hld.portfolio, hld.code))
-        hld_cash.quantity += trans.amount
+        hld_cash.quantity = float(hld_cash.quantity) + float(trans.amount)
         hld_cash.amount = hld_cash.quantity
 
 def create_holding(trans):
@@ -79,7 +79,7 @@ def all_trans_between(date_start, end_date):
         trans_dict[trans.dt.strftime("%Y-%m-%d")] = trans_list
     return trans_dict
 
-update_holding_by_date('2016-01-02', '2018-10-10')
+update_holding_by_date('2017-04-29', '2017-05-06')
 
 #trans_dict = all_trans_between('2016-01-02', '2018-10-10')
 #for (key, value) in trans_dict.items():
