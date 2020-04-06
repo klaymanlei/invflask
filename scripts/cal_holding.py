@@ -79,8 +79,12 @@ def all_trans_between(date_start, end_date):
         trans_dict[trans.dt.strftime("%Y-%m-%d")] = trans_list
     return trans_dict
 
-update_holding_by_date('2017-04-29', '2017-05-06')
+update_holding_by_date('2018-02-17', '2018-03-31')
 
 #trans_dict = all_trans_between('2016-01-02', '2018-10-10')
 #for (key, value) in trans_dict.items():
 #    print key, value
+
+# SELECT * FROM t_transaction WHERE dt BETWEEN '2018-01-23' AND '2018-01-30' ORDER BY amount desc
+
+# SELECT SUM(amount) FROM t_holding WHERE dt='2018-01-30' AND sec_type='cash'

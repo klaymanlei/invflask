@@ -31,7 +31,7 @@ def update_asset_by_date(date_start, date_end, hist_price_dict):
             if asset_tmp.sec_type == 'cash':
                 asset_dict[(asset_tmp.portfolio, asset_tmp.sec_type)] = asset_tmp
             else:
-                q = asset_tmp.quantity
+                q = float(asset_tmp.quantity)
                 tmp_date = date
                 while (not hist_price_dict.has_key((asset_tmp.code, tmp_date))):
                     if tmp_date < '2016-01-01':
@@ -102,7 +102,7 @@ hist_prices = fetch_all_hist_price()
 hist_price_dict = {}
 for hist_price in hist_prices:
     hist_price_dict[(hist_price.code, str(hist_price.dt))] = hist_price.price
-update_asset_by_date('2016-01-01', '2018-10-10', hist_price_dict)
+update_asset_by_date('2016-03-21', '2016-12-24', hist_price_dict)
 
 #holdings = all_holding_between('2016-01-02', '2018-10-10')
 #for holding in holdings:

@@ -133,8 +133,8 @@ def init_holding():
                   portfolio = 'ss50_fund',
                   code = '-',
                   sec_type = 'cash',
-                  quantity = 150000,
-                  amount = 150000)
+                  quantity = 100000,
+                  amount = 100000)
     hlds.append(hld)
     hld = Holding(dt = '2016-01-01',
                   portfolio = 'ss50_lowestpb',
@@ -149,7 +149,7 @@ def init_holding():
 if __name__ == '__main__':
     print 'main'
     #create_tables()
-    #init_holding()
+    init_holding()
 
     #import_code_prc('../../../data/code_price.txt')
 
@@ -170,9 +170,9 @@ if __name__ == '__main__':
     #db.session.commit()
 
     # fetch holding
-    #holdings = fetch_holding('2016-01-01', code = '510050')
+    #holdings = fetch_holding('2016-03-07', code = '')
     #print holdings
 
-    hist_price = fetch_hist_price('600029', '2018-09-21')
-    if len(hist_price) > 0:
-        print hist_price[0].price * 1000
+    #hist_price = fetch_hist_price('600029', '2018-09-21')
+    #if len(hist_price) > 0:
+    #    print hist_price[0].price * 1000

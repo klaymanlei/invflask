@@ -5,11 +5,18 @@ from flask import Flask
 
 DATABASE = 'mysql'
 CONNECTOR = 'mysqldb'
-USERNAME = 'leidayu'
-PASSWORD = 'leidayu'
-HOST = '10.88.15.50'
-PORT = '23306'
-DB = 'invdb'
+
+#USERNAME = 'leidayu'
+#PASSWORD = 'leidayu'
+#HOST = '10.88.15.50'
+#PORT = '23306'
+#DB = 'invdb'
+
+USERNAME = 'invest'
+PASSWORD = 'InvestNPass4!'
+HOST = '192.168.1.199'
+PORT = '3306'
+DB = 'invest'
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
