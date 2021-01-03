@@ -1,11 +1,14 @@
-#coding:utf-8
+# coding:utf-8
 import urllib2
 import datetime
+import sys
+import time
 
 sep = ','
 api = u'http://hq.sinajs.cn/list=%s'
 list_path = '../data/stock_list.txt'
 out_path = '../data/'
+
 
 def write_file(file_path, outlines):
     file_out = open(file_path, 'a')
@@ -15,6 +18,7 @@ def write_file(file_path, outlines):
             file_out.write('\n')
     file_out.close()
 
+
 def get_season(date_str):
     strs = date_str.split('-')
     if len(strs) != 3:
@@ -23,7 +27,7 @@ def get_season(date_str):
     season_mon = mon - (mon + 2) % 3
     return "%s-%02d-01" % (strs[0], season_mon)
 
-def sendGet(api, list):
+def send_get(api, list):
     url = api % sep.join(list)
     print url
     for j in range(1, 4):
@@ -44,40 +48,46 @@ def read_list(path):
             code = line.split('\t')
             if len(code) > 1:
                 list.append(code[0])
-    expect:
+    except:
         print 'load stock list fail'
     return list
 
+def parse_line(line, out_lines):
+    row = []
+    if len(line.strip()) == 0:
+        return
+    data = line[line.find('"') + 1: -1].strip().strip(',').split(',')
+    row.append(list[rownum][2:])
+    row.append(data[-3])
+    row.append(data[1])
+    row.append(data[4])
+    row.append(data[5])
+    row.append(data[3])
+    row.append(data[8])
+    row.append(data[3])
+    out_lines.append(sep.join(row))
+
+
 if __name__ == '__main__':
     if len(sys.argv) != 2:
-        print 'Usage:', sys.argv[0],'out_path'
+        print 'Usage:', sys.argv[0], 'out_path'
         exit(1)
 
     out_path = sys.argv[1]
     list = read_list(list_path)
-    page = urllib2.urlopen(api, list)
-    html = page.read().decode('gbk').encode('utf-8')
-    page.close()
+    tmp_list = []
 
-    rownum = 0
-    outlines = []
-    for line in html.split(';'):
-        row = []
-        if len(line.strip()) == 0:
-            continue
-        data = line[line.find('"') + 1 : -1].strip().strip(',').split(',')
-        row.append(list[rownum][2:])
-        row.append(data[-3])
-        row.append(data[1])
-        row.append(data[4])
-        row.append(data[5])
-        row.append(data[3])
-        row.append(data[8])
-        row.append(data[3])
-        outlines.append(sep.join(row))
-        rownum += 1
+    out_lines = []
+    for code in list:
+        tmp_list.append(code)
+        if (len(tmp_list) >= 10):
+            html = send_get(api, tmp_list)
+            for line in html.split(';'):
+                parse_line(line, out_lines)
+            tmp_list = []
+            time.sleep(1)
 
     date_str = datetime.datetime.now().strftime('%Y-%m-%d')
     file_out = out_path + '/' + get_season(date_str)
     print file_out
-    write_file(file_out, outlines)
+    write_file(file_out, out_lines)
