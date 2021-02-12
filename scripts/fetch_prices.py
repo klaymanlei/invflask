@@ -85,7 +85,7 @@ if __name__ == '__main__':
             for line in html.split(';'):
                 parse_line(line, out_lines)
             tmp_list = []
-            time.sleep(1)
+            time.sleep(0.5)
 
     date_str = datetime.datetime.now().strftime('%Y-%m-%d')
     file_out = out_path + '/' + get_season(date_str)
