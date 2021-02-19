@@ -57,7 +57,8 @@ def parse_line(line, out_lines):
     if len(line.strip()) == 0:
         return
     data = line[line.find('"') + 1: -1].strip().strip(',').split(',')
-    row.append(list[rownum][2:])
+    code = line.split('=')[0][-6:]
+    row.append(code)
     row.append(data[-3])
     row.append(data[1])
     row.append(data[4])
@@ -86,6 +87,11 @@ if __name__ == '__main__':
                 parse_line(line, out_lines)
             tmp_list = []
             time.sleep(0.5)
+
+    html = send_get(api, tmp_list)
+    for line in html.split(';'):
+        parse_line(line, out_lines)
+    tmp_list = []
 
     date_str = datetime.datetime.now().strftime('%Y-%m-%d')
     file_out = out_path + '/' + get_season(date_str)
