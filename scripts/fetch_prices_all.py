@@ -11,7 +11,7 @@ out_path = '../data/'
 script_name = 'fetch_prices_all.py'
 
 def write_file(file_path, outlines):
-    file_out = open(file_path, 'a')
+    file_out = open(file_path, 'w')
     for line in outlines:
         if len(line.strip()) > 0:
             file_out.write(line)
@@ -59,17 +59,19 @@ def parse_line(line, out_lines):
     if not '"' in line or not '=' in line:
         return
     data = line.split('"', -1)
-    code = line.split('=')[0][-6:]
+    #code = line.split('=')[0][-6:]
+    code = line.split('=')[0].split('_str_')[1]
     row.append(code)
     row.append(data[1])
     out_lines.append(sep.join(row))
 
 if __name__ == '__main__':
-    if len(sys.argv) != 2:
-        print 'Usage:', sys.argv[0], 'out_path'
+    if len(sys.argv) != 3:
+        print 'Usage:', sys.argv[0], 'code_list out_path'
         exit(1)
 
-    out_path = sys.argv[1]
+    out_path = sys.argv[2]
+    list_path = sys.argv[1]
     script_path = sys.argv[0]
     list = read_list(script_path[:-len(script_name)] + list_path)
     tmp_list = []
