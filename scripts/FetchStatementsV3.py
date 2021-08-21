@@ -1,5 +1,5 @@
 #coding:utf-8
-import urllib.request
+#import urllib.request
 import json
 import sys
 import codecs
@@ -14,6 +14,9 @@ importlib.reload(sys)
 
 report_url = r'http://f10.eastmoney.com/NewFinanceAnalysis/MainTargetAjax'
 code_list_path = 'D:/dev/projects/invflask/data/statements/'
+# http://f10.eastmoney.com/NewFinanceAnalysis/zcfzbAjax?companyType=4&reportDateType=0&reportType=1&endDate=&code=SH601668
+# http://f10.eastmoney.com/NewFinanceAnalysis/lrbAjax?companyType=4&reportDateType=0&reportType=1&endDate=&code=SH601668
+# http://f10.eastmoney.com/NewFinanceAnalysis/xjllbAjax?companyType=4&reportDateType=0&reportType=1&endDate=&code=SH601668
 
 def get(url, params):
     try:
@@ -81,8 +84,9 @@ if __name__ == '__main__':
     codes = read_codes(code_list_path + '2019-01/2019-01-01')
 
     # 2019-09-30、2019-06-30、2019-03-31、2018-12-31
-    date = '2020-06-30'
-    file = open(code_list_path + '2020-07/2020-07-01', 'w')
+    #date_map = {"":""}
+    date = '2021-03-31'
+    file = open(code_list_path + '2021-04/2021-04-01', 'w')
     cnt = 0
     for code in codes:
         cnt += 1
