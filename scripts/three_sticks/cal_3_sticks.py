@@ -113,6 +113,10 @@ if __name__ == '__main__':
 
     # 查询最近的stick_cnt条历史记录
     hist = get_hist(date, code, type, stick_cnt)
+
+    if len(hist) == 0:
+        insert(date, code, type, data['open'], data['close'])
+
     print 'hist:'
     for hist_data in hist:
         print hist_data
@@ -125,11 +129,11 @@ if __name__ == '__main__':
     if same_direct(forward, data['close'], backward, forward):
         # 如果最新的close价格相对趋势延伸阈值的方向与历史K线方向一致，则趋势延伸
         print '趋势延伸'
-        #insert(date, code, type, forward, data['close'])
+        insert(date, code, type, forward, data['close'])
     elif not same_direct(backward, data['close'], backward, forward):
         # 如果最新的close价格相对趋势反转阈值的方向与历史K线方向相反，则趋势反转
         print '趋势反转'
-        #insert(date, code, type, backward, data['close'])
+        insert(date, code, type, backward, data['close'])
     else:
         # 如果最新的close价格相对趋势延伸阈值的方向与历史K线方向相反，且相对趋势反转阈值的方向与历史K线方向相同，则最新的close价格落在两个阈值之间，趋势不更新
         print '不更新'
