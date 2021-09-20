@@ -18,15 +18,18 @@ def load(filepath, date, code):
 
     rs = {}
     for line in file:
-        line = file.readline().split('\t')
-        date_read = line[0].strip()
-        code_read = line[1].strip()
+        line = line.strip()
+        if line[-1] != ',':
+            line = line + ','
+        data = line.split(',', -1)
+        date_read = data[-4].strip()
+        code_read = data[0][2:]
         if date != date_read or code != code_read:
             continue
-        rs['date'] = date_read
-        rs['code'] = code_read
-        rs['open'] = float(line[2].strip())
-        rs['close'] = float(line[3].strip())
+        rs['date'] = date_read.encode('utf-8')
+        rs['code'] = code_read.encode('utf-8')
+        rs['open'] = float(data[2].strip())
+        rs['close'] = float(data[4].strip())
         break
 
     if len(rs) == 0:

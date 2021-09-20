@@ -38,7 +38,7 @@ def get_hist(date, code, type, line_cnt = 3):
             limit %d 
         """ % (date, code, type, line_cnt)
         sql = sql.replace('${table_name}', table_name)
-        print sql
+        # print sql
         cursor.execute(sql)
         for row in cursor.fetchall():
             data = {}
